@@ -1,4 +1,4 @@
-const weatherTypes = {
+const weatherType = {
   Thunderstorm: {
     icon: "zap",
     message: "It could get noisy",
@@ -41,4 +41,4 @@ const weatherTypes = {
   }
 };
 
-export { weatherTypes };
+export { weatherType };
