@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { weatherType } from "../utilities/weatherType";
 
 const ListItem = (props) => {
   // eslint-disable-next-line react/prop-types
@@ -26,16 +27,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 5,
-    backgroundColor: "pink"
+    backgroundColor: "pink",
   },
   temp: {
     color: "white",
-    fontSize: 20
+    fontSize: 20,
   },
   date: {
     color: "white",
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 });
 
 export default ListItem;
