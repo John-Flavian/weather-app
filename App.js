@@ -5,12 +5,15 @@ import * as Location from "expo-location";
 import Tabs from "./src/components/Tabs";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
-// import { TEST_KEY } from "@env";
+import { TEST_KEY } from "@env";
+// import "react-native-dotenv";
+// import "dotenv/config";
 
-// console.log(TEST_KEY);
+// eslint-disable-next-line no-undef
+console.log(TEST_KEY);
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
 
@@ -29,6 +32,7 @@ const App = () => {
 
   if (location) {
     console.log(location);
+    console.log(error);
   }
 
   if (loading) {
@@ -49,8 +53,8 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default App;
