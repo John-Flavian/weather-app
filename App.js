@@ -5,17 +5,32 @@ import * as Location from "expo-location";
 import Tabs from "./src/components/Tabs";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
-import { TEST_KEY } from "@env";
-// import "react-native-dotenv";
-// import "dotenv/config";
+import { WEATHER_API_KEY } from "@env";
 
-// eslint-disable-next-line no-undef
-console.log(TEST_KEY);
+// api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
+  const [weather, setWeather] = useState([]);
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+
+  const fetchWeatherData = async () => {
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+      );
+      const data = await res.json();
+      setWeather(data);
+      setLoading(false);
+    } catch (e) {
+      setError("Could not fetch weather!");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -25,13 +40,16 @@ const App = () => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      let deviceLocation = await Location.getCurrentPositionAsync({});
+      setLocation(deviceLocation);
+      setLat(location.coords.latitude);
+      setLon(location.coords.longitude);
+      await fetchWeatherData();
     })();
-  }, []);
+  }, [lat, lon]);
 
-  if (location) {
-    console.log(location);
+  if (weather) {
+    console.log(weather);
     console.log(error);
   }
 
