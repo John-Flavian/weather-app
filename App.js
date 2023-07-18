@@ -6,27 +6,24 @@ import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import { useGetWeather } from "./src/hooks/useGetWeather";
 
-// api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
-
 const App = () => {
   const [loading, error, weather] = useGetWeather();
+  //For debugging
+  console.log("Error:" + error);
+  console.log("loading:" + loading);
+  console.table(weather);
 
-  if (weather) {
-    console.log(weather);
-  }
-
-  if (loading) {
+  if (weather && weather.list) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size={"large"} color={"blue"} />
-      </View>
+      <NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
     );
   }
-
   return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
+    <View style={styles.container}>
+      <ActivityIndicator size={"large"} color={"blue"} />
+    </View>
   );
 };
 
