@@ -1,30 +1,48 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import RowText from "../components/RowText";
 import { weatherType } from "../components/weatherType";
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
   const {
     wrapper,
     container,
-    temp,
+    tempStyles,
     feels,
     highLowWrapper,
     highLow,
     bodyWrapper,
     description,
-    message
+    message,
   } = styles;
+
+  const {
+    main: { temp, feels_like, temp_max, temp_min },
+    weather,
+  } = weatherData;
+
+  const weatherCondition = weather[0].main;
+
   return (
-    <SafeAreaView style={wrapper}>
+    <SafeAreaView
+      style={[
+        wrapper,
+        { backgroundColor: weatherType[weatherCondition].backgroundColor },
+      ]}
+    >
       <View style={container}>
-        <Feather name="sun" size={100} color="black" />
-        <Text style={temp}>6</Text>
-        <Text style={feels}>Feels like 5</Text>
+        <Feather
+          name={weatherType[weatherCondition].icon}
+          size={100}
+          color="white"
+        />
+        <Text style={tempStyles}>{temp}</Text>
+        <Text style={feels}>{`Feels like 5 ${feels_like}`}</Text>
         <RowText
-          messageOne={"High: 8 "}
-          messageTwo={"Low: 6"}
+          messageOne={`High: ${temp_max}`}
+          messageTwo={`Low: ${temp_min}`}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
@@ -32,8 +50,8 @@ const CurrentWeather = () => {
       </View>
 
       <RowText
-        messageOne={"It's sunny"}
-        messageTwo={weatherType["Thunderstorm"].message}
+        messageOne={weather[0].description}
+        messageTwo={weatherType[weatherCondition].message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
@@ -46,41 +64,41 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: "pink",
-    marginTop: StatusBar.currentHeight || 0
+    marginTop: StatusBar.currentHeight || 0,
   },
   container: {
     flex: 1,
     backgroundColor: "pink",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
-  temp: {
+  tempStyles: {
     color: "black",
-    fontSize: 48
+    fontSize: 48,
   },
   feels: {
     fontSize: 30,
-    color: "black"
+    color: "black",
   },
   highLow: {
     fontSize: 20,
-    color: "black"
+    color: "black",
   },
   highLowWrapper: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   bodyWrapper: {
     justifyContent: "flex-end",
     alignItems: "flex-start",
     paddingLeft: 25,
-    marginBottom: 40
+    marginBottom: 40,
   },
   description: {
-    fontSize: 48
+    fontSize: 48,
   },
   message: {
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 });
 
 export default CurrentWeather;

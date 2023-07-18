@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import CurrentWeather from "../screens/CurrentWeather";
 import UpcomingWeather from "../screens/UpcomingWeather";
@@ -7,28 +8,27 @@ import { Feather } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = () => {
+const Tabs = ({ weather }) => {
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: "tomato",
         tabBarInactiveTintColor: "grey",
         tabBarStyle: {
-          backgroundColor: "lightblue"
+          backgroundColor: "lightblue",
         },
         headerStyle: {
-          backgroundColor: "lightblue"
+          backgroundColor: "lightblue",
         },
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 25,
-          color: "tomato"
-        }
+          color: "tomato",
+        },
       }}
     >
       <Tab.Screen
         name={"Current"}
-        component={CurrentWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -36,9 +36,11 @@ const Tabs = () => {
               size={25}
               color={focused ? "tomato" : "black"}
             />
-          )
+          ),
         }}
-      />
+      >
+        {() => <CurrentWeather weatherData={weather.list[0]} />}
+      </Tab.Screen>
       <Tab.Screen
         name={"Upcoming"}
         component={UpcomingWeather}
@@ -49,7 +51,7 @@ const Tabs = () => {
               size={25}
               color={focused ? "tomato" : "black"}
             />
-          )
+          ),
         }}
       />
       <Tab.Screen
@@ -62,7 +64,7 @@ const Tabs = () => {
               size={25}
               color={focused ? "tomato" : "black"}
             />
-          )
+          ),
         }}
       />
     </Tab.Navigator>

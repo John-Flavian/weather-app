@@ -11,7 +11,7 @@ const App = () => {
   //For debugging
   console.log("Error:" + error);
   console.log("loading:" + loading);
-  console.table(weather);
+  // console.log(weather);
 
   if (weather && weather.list) {
     return (
