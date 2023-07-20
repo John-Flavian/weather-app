@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import RowText from "../components/RowText";
 import { weatherTypeComponent } from "../components/weatherTypes";
@@ -41,8 +41,8 @@ const CurrentWeather = ({ weatherData }) => {
           size={100}
           color="white"
         />
-        <Text style={tempStyles}>{temp}</Text>
-        <Text style={feels}>{`Feels like ${feels_like}`}</Text>
+        <Text style={tempStyles}>{`${temp}°`}</Text>
+        <Text style={feels}>{`Feels like ${feels_like}°`}</Text>
         <RowText
           messageOne={`High: ${temp_max}° `}
           messageTwo={`Low: ${temp_min}°`}
@@ -66,8 +66,6 @@ const CurrentWeather = ({ weatherData }) => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "pink",
-    marginTop: StatusBar.currentHeight || 0,
   },
   container: {
     flex: 1,
@@ -97,10 +95,10 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   description: {
-    fontSize: 48,
+    fontSize: 43,
   },
   message: {
-    fontSize: 20,
+    fontSize: 25,
   },
 });
 

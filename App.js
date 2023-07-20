@@ -10,7 +10,7 @@ import ErrorItem from "./src/components/ErrorItem";
 const App = () => {
   const [loading, error, weather] = useGetWeather();
   //For debugging
-  // console.log("Error:" + error);
+  console.log("Error:" + error);
   // console.log("loading:" + loading);
   // console.log(weather);
 
