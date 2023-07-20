@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ImageBackground,
   View,
-  StatusBar,
 } from "react-native";
 import IconText from "../components/IconText";
 import moment from "moment";
@@ -75,7 +74,6 @@ const City = ({ weatherData }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
   imageLayout: {
     flex: 1,

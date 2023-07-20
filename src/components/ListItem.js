@@ -7,7 +7,7 @@ import moment from "moment";
 
 const ListItem = (props) => {
   const { dt_txt, min, max, condition } = props;
-  // console.log(condition);
+
   const { item, date, temp, dateTextWrapper } = styles;
   return (
     <View style={item}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 5,
-    backgroundColor: "pink",
+    backgroundColor: "indianred",
   },
   temp: {
     color: "white",
