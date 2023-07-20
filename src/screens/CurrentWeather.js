@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import RowText from "../components/RowText";
-import { weatherType } from "../components/weatherType";
+import { weatherTypeComponent } from "../components/weatherTypes";
 
 const CurrentWeather = ({ weatherData }) => {
   const {
@@ -29,12 +29,15 @@ const CurrentWeather = ({ weatherData }) => {
     <SafeAreaView
       style={[
         wrapper,
-        { backgroundColor: weatherType[weatherCondition].backgroundColor },
+        {
+          backgroundColor:
+            weatherTypeComponent[weatherCondition].backgroundColor,
+        },
       ]}
     >
       <View style={container}>
         <Feather
-          name={weatherType[weatherCondition].icon}
+          name={weatherTypeComponent[weatherCondition].icon}
           size={100}
           color="white"
         />
@@ -51,7 +54,7 @@ const CurrentWeather = ({ weatherData }) => {
 
       <RowText
         messageOne={weather[0].description}
-        messageTwo={weatherType[weatherCondition].message}
+        messageTwo={weatherTypeComponent[weatherCondition].message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}

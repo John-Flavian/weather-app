@@ -9,8 +9,8 @@ import { useGetWeather } from "./src/hooks/useGetWeather";
 const App = () => {
   const [loading, error, weather] = useGetWeather();
   //For debugging
-  console.log("Error:" + error);
-  console.log("loading:" + loading);
+  // console.log("Error:" + error);
+  // console.log("loading:" + loading);
   // console.log(weather);
 
   if (weather && weather.list) {

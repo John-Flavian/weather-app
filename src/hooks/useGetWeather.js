@@ -48,7 +48,7 @@ export const useGetWeather = () => {
         return;
       }
     })();
-  }, []);
+  }, [coords]);
 
   // console.log(coords);
   return [loading, error, weather];
