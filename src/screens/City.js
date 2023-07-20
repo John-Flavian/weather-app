@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
+// import PropTypes from "prop-types";
 import {
   Text,
   SafeAreaView,
@@ -10,6 +12,13 @@ import {
 import IconText from "../components/IconText";
 import moment from "moment";
 
+// City.propTypes = {
+//   name: string,
+//   country,
+//   population,
+//   sunrise,
+//   sunset,
+// };
 const City = ({ weatherData }) => {
   const {
     container,

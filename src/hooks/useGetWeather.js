@@ -34,6 +34,7 @@ export const useGetWeather = () => {
 
       try {
         let deviceLocation = await Location.getCurrentPositionAsync({});
+        // console.log(deviceLocation);
         setLocation(deviceLocation);
         location &&
           setCoords((prev) => ({
@@ -42,7 +43,7 @@ export const useGetWeather = () => {
             lon: location.coords.longitude,
           }));
 
-        fetchWeatherData();
+        await fetchWeatherData();
       } catch (error) {
         setError("Error getting coordinates");
         return;
@@ -50,6 +51,6 @@ export const useGetWeather = () => {
     })();
   }, [coords]);
 
-  // console.log(coords);
+  // console.log(location);
   return [loading, error, weather];
 };
