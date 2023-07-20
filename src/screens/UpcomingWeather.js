@@ -3,7 +3,6 @@ import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
   FlatList,
   StatusBar,
   ImageBackground,
@@ -27,7 +26,6 @@ const UpcomingWeather = ({ weatherData }) => {
         source={require("../../assets/upcoming-background.jpg")}
         style={image}
       >
-        <Text>Upcoming Weather</Text>
         <FlatList
           data={weatherData}
           renderItem={renderedItem}
