@@ -23,7 +23,7 @@ const CurrentWeather = ({ weatherData }) => {
     weather,
   } = weatherData;
 
-  const weatherCondition = weather[0].main;
+  const weatherCondition = weather[0]?.main;
 
   return (
     <SafeAreaView
@@ -31,13 +31,13 @@ const CurrentWeather = ({ weatherData }) => {
         wrapper,
         {
           backgroundColor:
-            weatherTypeComponent[weatherCondition].backgroundColor,
+            weatherTypeComponent[weatherCondition]?.backgroundColor,
         },
       ]}
     >
       <View style={container}>
         <Feather
-          name={weatherTypeComponent[weatherCondition].icon}
+          name={weatherTypeComponent[weatherCondition]?.icon}
           size={100}
           color="white"
         />
@@ -53,8 +53,8 @@ const CurrentWeather = ({ weatherData }) => {
       </View>
 
       <RowText
-        messageOne={weather[0].description}
-        messageTwo={weatherTypeComponent[weatherCondition].message}
+        messageOne={weather[0]?.description}
+        messageTwo={weatherTypeComponent[weatherCondition]?.message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
